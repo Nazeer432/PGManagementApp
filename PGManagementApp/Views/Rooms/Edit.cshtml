@@ -1,0 +1,69 @@
+﻿@using static Data.ApplicationEnums;
+@model Data.Models.Room
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Edit Room</h3>
+
+<hr />
+<form asp-action="Edit">
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PkroomId" />
+            <input type="hidden" asp-for="FilledBeds" />
+            <input type="hidden" asp-for="IsGuestRoom" />
+            <div class="form-group">
+                <label asp-for="RoomName" class="control-label"></label>
+                <input asp-for="RoomName" class="form-control" />
+                <span asp-validation-for="RoomName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomStatus" class="control-label"></label>
+                <select asp-for="RoomStatus" class="form-control" asp-items="Html.GetEnumSelectList<RoomStatus>()"></select>
+                <span asp-validation-for="RoomStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkbranchId" class="control-label"></label>
+                <select asp-for="FkbranchId" class="form-control" asp-items="ViewBag.FkbranchId"></select>
+                <span asp-validation-for="FkbranchId" class="text-danger"></span>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="FkhostelId" class="control-label"></label>
+                <select asp-for="FkhostelId" class="form-control" asp-items="ViewBag.FkhostelId"></select>
+                <span asp-validation-for="FkhostelId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomType" class="control-label"></label>
+                <select asp-for="RoomType" class="form-control" asp-items="Html.GetEnumSelectList<RoomType>()"></select>
+                <span asp-validation-for="RoomType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfBeds" class="control-label"></label>
+                <input asp-for="NumberOfBeds" class="form-control" />
+                <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Data.Models.FeeDetail>
+@using static Data.ApplicationEnums;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Fee Details</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="row fw-bold">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="control-label"> <i class="fas fa-user" style='font-size:20px;color:crimson'></i> </label>
+            @Html.DisplayFor(model => model.First().Fktenant.TenantName)
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="control-label"> <i class="fas fa-phone" style='font-size:20px;color:crimson'></i> </label>
+            @Html.DisplayFor(model => model.First().Fktenant.MobileNo)
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="control-label"><i class='fas fa-house-user' style='font-size:20px;color:crimson'></i> </label>
+            @Html.DisplayFor(model => model.First().Fktenant.Fkroom.RoomName)
+        </div>
+    </div>
+       <div class="col-md-3">
+        <div class="form-group" title="Join Date">
+            <label class="control-label"><i class='far fa-calendar-alt' style='font-size:20px;color:crimson'></i> </label>
+            @Html.DisplayFor(model => model.First().Fktenant.RegisteredDate.Value)
+        </div>
+    </div>
+
+</div>
+<table class="table" id="feeDetailsTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FeeAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodBill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeeDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeeMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceivedAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeeAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodBill)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueAmount)
+                </td>
+                <td>
+                    @item.FeeDate.Value.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @if (item.FeeMode != null)
+                    {
+                        @Enum.GetName(typeof(TransactionType), item.FeeMode)
+
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceivedAmount)
+                </td>
+                <td>
+                    @* @Enum.GetName(typeof(TransactionType), item.TransactionType)*@
+                </td>
+                <td>
+                    @Enum.GetName(typeof(PaymentStatus), item.Status)
+                </td>
+                <td>
+                    <a asp-action="Payment" asp-route-id="@item.PkfeeDetailsId" title="Payment"> <i class="bi bi-cash-coin"></i></a> |
+                    <a asp-action="Edit" asp-route-id="@item.PkfeeDetailsId"><i class="fa fa-pencil"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.PkfeeDetailsId"><i class="fa fa-binoculars"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.PkfeeDetailsId"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+    {
+
+    <script>
+        $('#feeDetailsTable').DataTable({
+            "scrollY": "50vh",
+            "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+    </script>
+}

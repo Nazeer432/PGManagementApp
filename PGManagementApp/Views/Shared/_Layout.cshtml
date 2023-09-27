@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @*   Added for dashboad*@
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewData["Title"] - HostelManagementApp</title>
+    <!-- Searchable dropdown-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+
+   
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    
+
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HostelManagementApp.styles.css" asp-append-version="true" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+   
+
+   
+    <!-- Searchable dropdown-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+  
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication4</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-sm ps-3 navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <div style="background-color:#0078d4; "> <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-up-fill"></i>  AR STAY INN</a></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between text-white" style="background-color:#0078d4">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="color:white!important;" asp-area="" asp-controller="Home" asp-action="Index"><b> Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-white" style="color:white!important;" asp-area="" asp-controller="Tenants" asp-action="Index"><b><i class="fa fa-user" aria-hidden="true"></i>Tenants</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="color:white!important;" asp-area="" asp-controller="Rooms" asp-action="Index"><b><i class="fa fa-hotel"></i> Rooms</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="color:white!important;" asp-area="" asp-controller="GuestDetail" asp-action="Create"><b><i class="fa fa-hotel"></i> Guests</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" style="color:white!important;" asp-area="" asp-controller="Home" asp-action="GetDailyWages"><b><i class='fas fa-hand-holding-usd' style='color:red'></i> Spendings</b></a>
+                        </li>
+                      
+                    </ul>
+                   <partial name="_loginpartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="" style="height:1000p;margin:20px; ">
+        <main role="main" class="pb-3" >
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - HostelManagementApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <!-- Searchable dropdown-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+    <!-- Searchable dropdown-->
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+        <!-- Bootstrap core JavaScript-->
+
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>B
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+    <!-- Custom scripts for all pages-->
+  @*  <script src="~/js/sb-admin-2.min.js"></script>*@
+
+    <!-- Page level plugins -->
+@*    <script src="~/vendor/chart.js/Chart.min.js"></script>*@
+
+    <!-- Page level custom scripts -->
+@*    <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/demo/chart-pie-demo.js"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

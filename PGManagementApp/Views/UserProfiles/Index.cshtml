@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Data.Models.UserProfile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container-fluid">
+    <h2 class="text-center">User List</h2>
+    <div class="table-responsive">
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+<table class="table table-bordered table-striped">
+    <thead class="bg-primary text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>           
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fkrole)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fkrole.RoleName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PkuserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PkuserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PkuserId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+
+@*
+<div class="container-fluid">
+    <h2 class="text-center my-5">User List</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>UserName</td>
+                        <td>Email</td>
+                        <td>IsActive ? "Yes" : "No")</td>
+                        <td>Role</td>
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+*@

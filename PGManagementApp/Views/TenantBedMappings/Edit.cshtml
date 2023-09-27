@@ -1,0 +1,64 @@
+﻿@model Data.Models.TenantBedMapping
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TenantBedMapping</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PktenantBedId" />
+            <div class="form-group">
+                <label asp-for="FkbedId" class="control-label"></label>
+                <select asp-for="FkbedId" class="form-control" asp-items="ViewBag.FkbedId"></select>
+                <span asp-validation-for="FkbedId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FktenantId" class="control-label"></label>
+                <select asp-for="FktenantId" class="form-control" asp-items="ViewBag.FktenantId"></select>
+                <span asp-validation-for="FktenantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsActive" class="control-label"></label>
+                <input asp-for="IsActive" class="form-control" />
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Modified" class="control-label"></label>
+                <input asp-for="Modified" class="form-control" />
+                <span asp-validation-for="Modified" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fkcreatedby" class="control-label"></label>
+                <select asp-for="Fkcreatedby" class="form-control" asp-items="ViewBag.Fkcreatedby"></select>
+                <span asp-validation-for="Fkcreatedby" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkmodifiedBy" class="control-label"></label>
+                <select asp-for="FkmodifiedBy" class="form-control" asp-items="ViewBag.FkmodifiedBy"></select>
+                <span asp-validation-for="FkmodifiedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

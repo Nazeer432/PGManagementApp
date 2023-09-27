@@ -1,0 +1,131 @@
+﻿@model Data.Models.FeeDetail
+@using static Data.ApplicationEnums;
+@{
+    ViewData["Title"] = "Payment";
+    decimal? totalAmt = Model.FeeAmount.Value + Model.DueAmount.Value + Model.FoodBill + Model.AdditionalAmount;
+    Model.ReceivedAmount = totalAmt.Value;
+}
+
+<div class="row" style="background-color:antiquewhite;text-decoration-color:inherit">
+    <div class="col-lg-6">
+        <h3> <i class="fa fa-credit-card" style="font-size:24px;color:red"></i>  Payment Detail</h3>
+    </div>
+    <div class="col-lg-6">
+        <h5><i class="bi bi-arrow-left-short"></i> Back to list</h5>
+    </div>
+</div>
+<hr />
+<div class="row fw-bold" style="background-color:antiquewhite;text-decoration-color:inherit">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label"> Tenant Name : </label>
+            @Html.DisplayFor(model => model.Fktenant.TenantName)
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Mobile No : </label>
+            @Html.DisplayFor(model => model.Fktenant.MobileNo)
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Room No : </label>
+            @Html.DisplayFor(model => model.Fktenant.Fkroom.RoomName)
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Food bill : </label>
+            <i class="bi bi-currency-rupee"></i>  @Model.FoodBill.Value.ToString("#,##0.00")
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label"> Fee : </label>
+            <i class="bi bi-currency-rupee"></i>  @Model.FeeAmount.Value.ToString("#,##0.00")
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Pending amt : </label>
+            <i class="bi bi-currency-rupee"></i> @Model.DueAmount.Value.ToString("#,##0.00")
+        </div>
+        <div class="form-group">
+            <label class="control-label"> Additional amt : </label>
+            <i class="bi bi-currency-rupee"></i> @Model.AdditionalAmount.Value.ToString("#,##0.00")
+        </div>
+        <div class="form-group" style="background-color:aqua; margin:5px;">
+            <b>
+                <label class="control-label"> Total amt : </label>
+                <i class="bi bi-currency-rupee"></i> @totalAmt.Value.ToString("#,##0.00")
+            </b>
+        </div>
+    </div>
+
+</div>
+<hr />
+<form asp-action="Payment">
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PkfeeDetailsId" />
+            <input type="hidden" asp-for="DueAmount" />
+            <input type="hidden" asp-for="FeeAmount" />
+            <input type="hidden" asp-for="AdditionalAmount" />
+            <input type="hidden" asp-for="FoodBill" />
+            <input type="hidden" asp-for="FktenantId" />
+            <input type="hidden" asp-for="FeeDate" />
+            <input type="hidden" asp-for="Created" />
+            <input type="hidden" asp-for="Modified" />
+            <input type="hidden" asp-for="FktenantId" />
+            <input type="hidden" asp-for="Fkcreatedby" />
+            <input type="hidden" asp-for="FkmodifiedBy" />
+            <div class="form-group">
+                <label asp-for="ReceivedAmount" class="control-label"></label>
+                <input asp-for="ReceivedAmount" class="form-control" />
+                <span asp-validation-for="ReceivedAmount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FeeDate" class="control-label"></label>
+                <input asp-for="FeeDate" class="form-control"  disabled/>
+                <span asp-validation-for="FeeDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" asp-items="Html.GetEnumSelectList<PaymentStatus>()"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="PaidDate" class="control-label"></label>
+                <input asp-for="PaidDate" class="form-control"  />
+                <span asp-validation-for="PaidDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeeMode" class="control-label"></label>
+                <select asp-for="FeeMode" class="form-control" asp-items="Html.GetEnumSelectList<TransactionType>()"></select>
+                <span asp-validation-for="FeeMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransactionType" class="control-label"></label>
+                <input asp-for="TransactionType" class="form-control" />
+                <span asp-validation-for="TransactionType" class="text-danger"></span>
+            </div>
+          
+        </div>
+        <div class="col-md-6 offset-md-10">
+            <div class="">
+                <input type="submit" value="Accept Payment" class="btn btn-outline-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+   
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

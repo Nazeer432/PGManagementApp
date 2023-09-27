@@ -1,0 +1,137 @@
+﻿@*@model IEnumerable<Data.Models.Tenant>*@
+@model IEnumerable<Data.ViewModels.TenantsDb>
+@using static Data.ApplicationEnums;
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+
+<h1>  Tenants List </h1>
+<p> <a asp-action="Create" type="button" class="btn btn-success"> <i class="fa fa-user" aria-hidden="true"></i> Create New</a></p>
+<table class="table" id="tenantListTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MonthlyFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeeStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.PktenantId" title="View Details"> @Html.DisplayFor(modelItem => item.TenantName) </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                @if (item.IsActive == (byte)TenantStatus.Active)
+                {
+                    <td>
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>  @Enum.GetName(typeof(TenantStatus), item.IsActive)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Enum.GetName(typeof(TenantStatus), item.IsActive)
+
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>
+                <td>
+                    <a asp-controller="FeeDetails" asp-action="Index" asp-route-id="@item.PktenantId" title="Payment Details"><i class="bi bi-cash-coin"></i>  @Html.DisplayFor(modelItem => item.MonthlyFee)</a>
+                </td>
+                <td>
+                    @item.DueDate.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @Enum.GetName(typeof(PaymentStatus), item.FeeStatus)
+                </td>
+                <td>
+                    @if (item.PaidDate != DateTime.MinValue)
+                    {
+                        item.PaidDate.ToString("dd-MM-yyyy");
+                    }
+                </td>
+                <td>
+                    <a onclick="ShowModelPopup('@item.PktenantId','@item.TenantName')" title="Set Notice Period"><i class="fas fa-external-link-alt"></i></a> |
+                    <a asp-action="Edit" asp-route-id="@item.PktenantId" title="Edit"><i class="fa fa-pencil"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.PktenantId" title="Delete"><i class="fa fa-trash"></i></a> |
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-controller="employee" asp-action="create">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="PktenantId" />
+                        <label>Name</label>
+                        <input type="text" class="form-control" required="required" name="TenantName" />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Date</label>
+                        <input type="text" class="form-control" required="required" name="NoticeDate" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Set Notice Period">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+
+            $('#tenantListTable').DataTable({
+                //"scrollY": "50vh",
+                //"scrollCollapse": true,
+            });
+            $('.dataTables_length').addClass('bs-select');
+
+
+        });
+
+    </script>
+}

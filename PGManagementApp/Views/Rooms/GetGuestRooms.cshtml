@@ -1,0 +1,95 @@
+﻿@using static Data.ApplicationEnums;
+@model IEnumerable<Data.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Guest Rooms List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomStatus)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilledBeds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fkbranch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fkhostel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomName)
+                </td>
+                <td>
+                    @Enum.GetName(typeof(RoomStatus), item.RoomStatus)
+                </td>
+                <td>
+                    @Enum.GetName(typeof(RoomType), item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfBeds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FilledBeds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fkbranch.BranchName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fkhostel.HostelName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PkroomId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PkroomId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PkroomId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dtDynamicVerticalScrollExample').DataTable({
+            "scrollY": "50vh",
+            "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>*@
+@section Scripts
+    {
+
+    <script>
+        $('#dtDynamicVerticalScrollExample').DataTable({
+            "scrollY": "50vh",
+            "scrollCollapse": true,
+        });
+        $('.dataTables_length').addClass('bs-select');
+    </script>
+}

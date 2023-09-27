@@ -1,0 +1,64 @@
+﻿@using static Data.ApplicationEnums;
+@model Data.Models.DailyWage
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h3>Spendings</h3>
+
+<hr />
+<form asp-action="DailyWages">
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="WageType" class="control-label"></label>
+                <select asp-for="WageType" class="form-control" asp-items="Html.GetEnumSelectList<WageType>()"></select>
+                <span asp-validation-for="WageType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="FkbranchId" class="control-label"></label>
+                <select asp-for="FkbranchId" class="form-control" asp-items="ViewBag.FkbranchId"></select>
+                <span asp-validation-for="FkbranchId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaidBy" class="control-label"></label>
+                <input asp-for="PaidBy" class="form-control" />
+                <span asp-validation-for="PaidBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Created" class="control-label"></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
